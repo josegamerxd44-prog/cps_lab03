@@ -16,10 +16,16 @@ public class StudentController {
 
     public void mostrarEstudiantes() {
         List<StudentEntity> estudiantes = studentService.listarEstudiantes();
+        if (estudiantes.isEmpty()) {
+            System.out.println("⚠️ No hay estudiantes registrados aún.");
+            return;
+        }
         System.out.println("📋 Lista de estudiantes:");
+        System.out.println("------------------------");
         for (StudentEntity e : estudiantes) {
             System.out.println(e);
         }
+        System.out.println("------------------------");
     }
 
     public void buscarEstudiante(Long id) {
@@ -28,22 +34,6 @@ public class StudentController {
             System.out.println("🔍 Estudiante encontrado: " + estudiante);
         } else {
             System.out.println("⚠️ Estudiante con ID " + id + " no encontrado.");
-        }
-    }
-
-    public void eliminarEstudiante(Long id) {
-        if (studentService.eliminarEstudiante(id)) {
-            System.out.println("🗑️ Estudiante eliminado con éxito.");
-        } else {
-            System.out.println("⚠️ No se encontró estudiante con ID " + id);
-        }
-    }
-
-    public void actualizarCorreo(Long id, String nuevoCorreo) {
-        if (studentService.actualizarCorreo(id, nuevoCorreo)) {
-            System.out.println("✉️ Correo actualizado correctamente.");
-        } else {
-            System.out.println("⚠️ No se pudo actualizar, estudiante no encontrado.");
         }
     }
 }
