@@ -11,7 +11,13 @@ public class StudentEntity {
         this.nombre = nombre;
         this.correo = correo;
     }
-
+    public void mostrarEstudiantes() {
+        List<StudentEntity> estudiantes = studentService.listarEstudiantes();
+        System.out.println("📋 Lista de estudiantes:");
+        for (StudentEntity e : estudiantes) {
+            System.out.println(e);
+        }
+    }
     // Getters y setters
     public Long getId() {
         return id;

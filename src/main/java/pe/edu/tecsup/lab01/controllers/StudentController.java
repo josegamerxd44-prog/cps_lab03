@@ -22,6 +22,14 @@ public class StudentController {
         }
     }
 
+    public void mostrarEstudiantes() {
+        List<StudentEntity> estudiantes = studentService.listarEstudiantes();
+        System.out.println("📋 Lista de estudiantes:");
+        for (StudentEntity e : estudiantes) {
+            System.out.println(e);
+        }
+    }
+
     public void buscarEstudiante(Long id) {
         StudentEntity estudiante = studentService.buscarPorId(id);
         if (estudiante != null) {
