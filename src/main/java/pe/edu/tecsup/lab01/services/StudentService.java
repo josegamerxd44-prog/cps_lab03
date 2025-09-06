@@ -21,4 +21,12 @@ public class StudentService {
     public StudentEntity buscarPorId(Long id) {
         return repository.findById(id);
     }
+
+    public boolean eliminarEstudiante(Long id) {
+        return repository.deleteById(id);
+    }
+
+    public boolean actualizarCorreo(Long id, String nuevoCorreo) {
+        return repository.updateEmail(id, nuevoCorreo);
+    }
 }

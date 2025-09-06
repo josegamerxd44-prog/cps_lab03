@@ -4,7 +4,7 @@ import pe.edu.tecsup.lab03.entities.StudentEntity;
 import pe.edu.tecsup.lab03.services.StudentService;
 
 import java.util.List;
-//sabor
+
 public class StudentController {
 
     private StudentService studentService = new StudentService();
@@ -28,6 +28,22 @@ public class StudentController {
             System.out.println("🔍 Estudiante encontrado: " + estudiante);
         } else {
             System.out.println("⚠️ Estudiante con ID " + id + " no encontrado.");
+        }
+    }
+
+    public void eliminarEstudiante(Long id) {
+        if (studentService.eliminarEstudiante(id)) {
+            System.out.println("🗑️ Estudiante eliminado con éxito.");
+        } else {
+            System.out.println("⚠️ No se encontró estudiante con ID " + id);
+        }
+    }
+
+    public void actualizarCorreo(Long id, String nuevoCorreo) {
+        if (studentService.actualizarCorreo(id, nuevoCorreo)) {
+            System.out.println("✉️ Correo actualizado correctamente.");
+        } else {
+            System.out.println("⚠️ No se pudo actualizar, estudiante no encontrado.");
         }
     }
 }

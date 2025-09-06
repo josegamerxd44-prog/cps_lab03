@@ -23,4 +23,17 @@ public class StudentRepository {
                 .findFirst()
                 .orElse(null);
     }
+
+    public boolean deleteById(Long id) {
+        return estudiantes.removeIf(s -> s.getId().equals(id));
+    }
+
+    public boolean updateEmail(Long id, String nuevoCorreo) {
+        StudentEntity estudiante = findById(id);
+        if (estudiante != null) {
+            estudiante.setCorreo(nuevoCorreo);
+            return true;
+        }
+        return false;
+    }
 }

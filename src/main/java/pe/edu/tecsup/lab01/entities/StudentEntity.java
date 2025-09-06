@@ -1,24 +1,48 @@
-package pe.edu.tecsup.lab03.services;
+package pe.edu.tecsup.lab03.entities;
 
-import pe.edu.tecsup.lab03.entities.StudentEntity;
-import pe.edu.tecsup.lab03.repositories.StudentRepository;
+public class StudentEntity {
 
-import java.util.List;
+    private Long id;
+    private String nombre;
+    private String correo;
 
-public class StudentService {
-
-    private StudentRepository repository = new StudentRepository();
-
-    public void registrarEstudiante(Long id, String nombre, String correo) {
-        StudentEntity student = new StudentEntity(id, nombre, correo);
-        repository.save(student);
+    public StudentEntity(Long id, String nombre, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.correo = correo;
     }
 
-    public List<StudentEntity> listarEstudiantes() {
-        return repository.findAll();
+    // Getters y setters
+    public Long getId() {
+        return id;
     }
 
-    public StudentEntity buscarPorId(Long id) {
-        return repository.findById(id);
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    @Override
+    public String toString() {
+        return "👤 Estudiante{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                '}';
     }
 }
