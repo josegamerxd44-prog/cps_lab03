@@ -1,39 +1,33 @@
-package com.example.demo.controller;
+package pe.edu.tecsup.lab03.controllers;
 
-import com.example.demo.entity.Student;
-import com.example.demo.service.StudentService;
-import org.springframework.web.bind.annotation.*;
+import pe.edu.tecsup.lab03.entities.StudentEntity;
+import pe.edu.tecsup.lab03.services.StudentService;
 
 import java.util.List;
-import java.util.Optional;
 
-@RestController
-@RequestMapping("/students")
 public class StudentController {
 
-    private final StudentService studentService;
+    private StudentService studentService = new StudentService();
 
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public void registrarEstudiante(Long id, String nombre, String correo) {
+        studentService.registrarEstudiante(id, nombre, correo);
+        System.out.println("✅ Estudiante registrado con éxito");
     }
 
-    @GetMapping
-    public List<Student> listar() {
-        return studentService.listar();
+    public void mostrarEstudiantes() {
+        List<StudentEntity> estudiantes = studentService.listarEstudiantes();
+        System.out.println("📋 Lista de estudiantes:");
+        for (StudentEntity e : estudiantes) {
+            System.out.println(e);
+        }
     }
 
-    @GetMapping("/{id}")
-    public Optional<Student> buscarPorId(@PathVariable Long id) {
-        return studentService.buscarPorId(id);
-    }
-
-    @PostMapping
-    public Student guardar(@RequestBody Student student) {
-        return studentService.guardar(student);
-    }
-
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        studentService.eliminar(id);
+    public void buscarEstudiante(Long id) {
+        StudentEntity estudiante = studentService.buscarPorId(id);
+        if (estudiante != null) {
+            System.out.println("🔍 Estudiante encontrado: " + estudiante);
+        } else {
+            System.out.println("⚠️ Estudiante con ID " + id + " no encontrado.");
+        }
     }
 }
